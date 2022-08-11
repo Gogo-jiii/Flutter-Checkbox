@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -30,13 +31,35 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  bool checkboxValue = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(),
+      body: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Checkbox(
+              onChanged: (bool? value) {
+                setState(() {
+                  if (value != null) {
+                    checkboxValue = value;
+                    if (kDebugMode) {
+                      print(checkboxValue);
+                    }
+                  }
+                });
+              },
+              value: checkboxValue,
+            ),
+            const Text("A"),
+          ],
+        ),
+      ),
     );
   }
 }
